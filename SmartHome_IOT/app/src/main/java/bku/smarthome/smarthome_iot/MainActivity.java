@@ -134,7 +134,7 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("TEST", topic +"***"+message.toString());
                 if(topic.contains("humi"))
                 {
-                    txtHumi.setText(message.toString()+ "RH");
+                    txtHumi.setText(message.toString()+ "%");
                 }
                 else if(topic.contains("temp"))
                 {

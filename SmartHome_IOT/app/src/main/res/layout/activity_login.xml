@@ -9,7 +9,15 @@
     android:padding="15dp"
     tools:context=".Login">
 
-<TextView
+    <ImageView
+        android:layout_width="253dp"
+        android:layout_height="172dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="-10dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/smarthome" />
+
+    <TextView
     android:text="@string/login"
     android:textSize="25sp"
     android:textStyle="bold"

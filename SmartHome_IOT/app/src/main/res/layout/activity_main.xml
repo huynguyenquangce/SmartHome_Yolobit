@@ -36,11 +36,11 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="#ff0000"
-            android:text="28*C"
+            android:background="#DBC1AC"
+            android:text="28°C"
             android:textSize="50dp"
             android:textStyle="bold"
-            android:textColor="#ffffff"
+            android:textColor="#09B980"
             android:gravity="center"
             android:layout_margin="20dp"></TextView>
         <TextView
@@ -48,11 +48,11 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="#0000ff"
+            android:background="#9DAFE4"
             android:text="70%"
             android:textSize="50dp"
             android:textStyle="bold"
-            android:textColor="#ffffff"
+            android:textColor="#09B980"
             android:gravity="center"
             android:layout_margin="20dp"></TextView>
         </LinearLayout>
@@ -73,7 +73,10 @@
             app:textOn = "ON"
             app:textOff = "OFF"
             app:on="false"
-            app:colorBorder="@color/colorAccent"/>
+            app:colorOff="#D3D3D3"
+            app:colorOn="#25BA9A"
+            app:colorBorder="#FFFFFF"
+            />
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -94,7 +97,11 @@
             app:textOn = "ON"
             app:textOff = "OFF"
             app:on="false"
-            app:colorBorder="@color/colorAccent"/>
+            app:colorOff="#D3D3D3"
+            app:colorOn="#25BA9A"
+            app:colorBorder="#FFFFFF"/>
+<!--            app:colorBorder="@color/colorAccent"-->
+
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
