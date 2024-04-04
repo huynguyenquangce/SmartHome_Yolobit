@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "1086087369715",
+    "firebase_url": "https://smarthomeaiot-default-rtdb.firebaseio.com",
+    "project_id": "smarthomeaiot",
+    "storage_bucket": "smarthomeaiot.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1086087369715:android:a5ba508613b95f9c7af886",
+        "android_client_info": {
+          "package_name": "bku.smarthome.smarthome_iot"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAtrDe4_dWvjTgv8RdIsxKJedDTBPNoN58"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
