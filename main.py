@@ -3,7 +3,7 @@ from Adafruit_IO import MQTTClient
 import time
 import random
 from uart import *
-# from simple_ai import *
+from simple_ai import *
 
 AIO_FEED_ID = ["temp", "humi", "light_level", "security", "led_button", "door_button", "fan", "ai_detect"]
 AIO_USERNAME = "huynguyenk21ce"
@@ -62,18 +62,18 @@ client.loop_background()
 counter_updateValue = 1
 counter_readSever = 1
 
-# counter_ai = 10
+counter_ai = 10
 readSerial(client)
 while True:
     counter_updateValue = counter_updateValue - 1
     if counter_updateValue <= 0:
         counter_updateValue = 1
         #TODO1 - adding sensor value to server
-        # counter_ai -=1
-        # if counter_ai <=0:
-        #     counter_ai = 10
-        #     ai_result = image_detector()
-        #     client.publish("ai_detect",ai_result)
+        counter_ai -=1
+        if counter_ai <=0:
+            counter_ai = 10
+            ai_result = image_detector()
+            client.publish("ai_detect",ai_result)
         readSerial(client)
     time.sleep(1)
     pass

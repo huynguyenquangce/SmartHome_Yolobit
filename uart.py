@@ -10,8 +10,8 @@ def getPort():
         if "USB" in strPort:
             splitPort = strPort.split(" ")
             commPort = (splitPort[0])
-    # return "COM1"
-    return commPort
+    return "COM1"
+    # return commPort
 if getPort()!= "None":
     ser = serial.Serial( port=getPort(), baudrate=115200)
     print(ser)
