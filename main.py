@@ -5,9 +5,9 @@ import random
 from uart import *
 from simple_ai import *
 
-AIO_FEED_ID = ["temp", "humi", "light_level", "security", "led_button", "door_button", "fan", "ai_detect"]
+AIO_FEED_ID = ["temp", "humi", "light_level", "security", "led_button", "door_button", "fan", "ai_detect","pump"]
 AIO_USERNAME = "huynguyenk21ce"
-AIO_KEY = "aio_Zhdh05qe1oHeqlN4IH72WGLNa3yz"
+AIO_KEY = "aio_DrJE19Nsj9HlySKvNtxv6AW9IIOT"
 AIO_KEY = AIO_KEY.replace(AIO_KEY[:3], "aio")
 
 def connected(client):

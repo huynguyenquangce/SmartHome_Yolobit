@@ -6,10 +6,11 @@
         <entry key="..\:/HK232_DADN/SmartHome_IOT/app/src/main/res/drawable/ic_launcher_background.xml" value="0.22604166666666667" />
         <entry key="..\:/HK232_DADN/SmartHome_IOT/app/src/main/res/layout/activity_main.xml" value="0.2" />
         <entry key="..\:/HK232_DADN/SmartHome_IOT/app/src/main/res/layout/login.xml" value="0.20989583333333334" />
-        <entry key="..\:/SmartHome_IOT/app/src/main/res/layout/activity_login.xml" value="0.264" />
-        <entry key="..\:/SmartHome_IOT/app/src/main/res/layout/activity_main.xml" value="0.2" />
+        <entry key="..\:/SmartHome_IOT/app/src/main/res/layout/activity_login.xml" value="0.10566037735849057" />
+        <entry key="..\:/SmartHome_IOT/app/src/main/res/layout/activity_main.xml" value="0.264" />
         <entry key="..\:/SmartHome_IOT/app/src/main/res/layout/activity_register.xml" value="0.2" />
         <entry key="..\:/SmartHome_IOT/app/src/main/res/layout/login.xml" value="0.12135416666666667" />
+        <entry key="..\:/SmartHome_IOT/app/src/main/res/layout/test.xml" value="0.25" />
       </map>
     </option>
   </component>

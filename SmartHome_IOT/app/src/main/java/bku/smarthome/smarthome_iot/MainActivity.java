@@ -26,12 +26,12 @@ public class MainActivity extends AppCompatActivity {
 
     FirebaseAuth auth;
     Button button;
-    TextView textView;
+//    TextView textView;
     FirebaseUser user;
 
     MQTTHelper mqttHelper;
     TextView txtTemp,txtHumi;
-    LabeledSwitch led_btn, door_btn;
+    LabeledSwitch led_btn, door_btn,fan_btn,pump_btn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,11 +41,13 @@ public class MainActivity extends AppCompatActivity {
         txtHumi = findViewById(R.id.txtHumidity);
         led_btn = findViewById(R.id.btn_led);
         door_btn = findViewById(R.id.btn_door);
+        fan_btn = findViewById(R.id.btn_fan);
+        pump_btn = findViewById(R.id.btn_pump);
 
         // Firebase Authentication
         auth = FirebaseAuth.getInstance();
         button = findViewById(R.id.logout);
-        textView = findViewById(R.id.user_details);
+//        textView = findViewById(R.id.user_details);
         user = auth.getCurrentUser();
         if(user == null)
         {
@@ -53,10 +55,10 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
             finish();
         }
-        else
-        {
-            textView.setText(user.getEmail());
-        }
+//        else
+//        {
+//            textView.setText(user.getEmail());
+//        }
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -97,8 +99,39 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        // fan_btn
+        fan_btn.setOnToggledListener(new OnToggledListener() {
+            @Override
+            public void onSwitched(ToggleableView toggleableView, boolean isOn) {
+                if(isOn == true)
+                {
+                    sendDataMQTT("huynguyenk21ce/feeds/fan","2");
+                }
+                else
+                {
+                    sendDataMQTT("huynguyenk21ce/feeds/fan","0");
+                }
+            }
+        });
+
+        // pump_btn
+        pump_btn.setOnToggledListener(new OnToggledListener() {
+            @Override
+            public void onSwitched(ToggleableView toggleableView, boolean isOn) {
+                if(isOn == true)
+                {
+                    sendDataMQTT("huynguyenk21ce/feeds/pump","1");
+                }
+                else
+                {
+                    sendDataMQTT("huynguyenk21ce/feeds/pump","0");
+                }
+            }
+        });
+
         startMQTT();
     }
+
 
     public void sendDataMQTT(String topic, String value){
         MqttMessage msg = new MqttMessage();
@@ -162,7 +195,28 @@ public class MainActivity extends AppCompatActivity {
                         door_btn.setOn(false);
                     }
                 }
-
+                else if(topic.contains("fan"))
+                {
+                    if(message.toString().equals("1"))
+                    {
+                        fan_btn.setOn(true);
+                    }
+                    else
+                    {
+                        fan_btn.setOn(false);
+                    }
+                }
+                else if(topic.contains("pump"))
+                {
+                    if(message.toString().equals("1"))
+                    {
+                        pump_btn.setOn(true);
+                    }
+                    else
+                    {
+                        pump_btn.setOn(false);
+                    }
+                }
             }
 
             @Override
