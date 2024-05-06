@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.github.angads25.toggle.interfaces.OnToggledListener;
@@ -32,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
     MQTTHelper mqttHelper;
     TextView txtTemp,txtHumi;
     LabeledSwitch led_btn, door_btn,fan_btn,pump_btn;
+    ProgressBar progTemp, progHumi;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +45,8 @@ public class MainActivity extends AppCompatActivity {
         door_btn = findViewById(R.id.btn_door);
         fan_btn = findViewById(R.id.btn_fan);
         pump_btn = findViewById(R.id.btn_pump);
+        progTemp = findViewById(R.id.progressBarTemp);
+        progHumi = findViewById(R.id.progressBarHumi);
 
         // Firebase Authentication
         auth = FirebaseAuth.getInstance();
@@ -59,6 +63,9 @@ public class MainActivity extends AppCompatActivity {
 //        {
 //            textView.setText(user.getEmail());
 //        }
+
+        // For progress bar
+
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -168,10 +175,16 @@ public class MainActivity extends AppCompatActivity {
                 if(topic.contains("humi"))
                 {
                     txtHumi.setText(message.toString()+ "%");
+                    // Cập nhật giá trị của Humi
+                    int HumidityValue = Integer.parseInt(message.toString());
+                    progHumi.setProgress(HumidityValue);
                 }
                 else if(topic.contains("temp"))
                 {
                     txtTemp.setText(message.toString() + "°C");
+                    // Cập nhật giá trị của ProgressBar nhiệt độ
+                    int temperatureValue = Integer.parseInt(message.toString());
+                    progTemp.setProgress(temperatureValue);
                 }
                 else if(topic.contains("led-button"))
                 {
@@ -197,7 +210,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 else if(topic.contains("fan"))
                 {
-                    if(message.toString().equals("1"))
+                    if(message.toString().equals("2"))
                     {
                         fan_btn.setOn(true);
                     }
