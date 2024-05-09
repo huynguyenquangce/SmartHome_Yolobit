@@ -55,6 +55,8 @@ public class Setting extends AppCompatActivity{
                 String humidity = humidityEditText.getText().toString();
                 sendDataMQTT("huynguyenk21ce/feeds/set_temp",temperature);
                 sendDataMQTT("huynguyenk21ce/feeds/set_humi",humidity);
+                Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                startActivity(intent);
             }
         });
 

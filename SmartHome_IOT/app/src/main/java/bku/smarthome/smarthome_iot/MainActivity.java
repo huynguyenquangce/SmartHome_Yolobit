@@ -2,6 +2,10 @@ package bku.smarthome.smarthome_iot;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,6 +14,7 @@ import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+//import com.google.android.material.snackbar.Snackbar;
 import com.github.angads25.toggle.interfaces.OnToggledListener;
 import com.github.angads25.toggle.model.ToggleableView;
 import com.github.angads25.toggle.widget.LabeledSwitch;
@@ -20,13 +25,15 @@ import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
 import org.eclipse.paho.client.mqttv3.MqttCallbackExtended;
 import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
-
+import java.util.ArrayList;
+import androidx.appcompat.app.AlertDialog;
 import java.nio.charset.Charset;
 
 public class MainActivity extends AppCompatActivity {
 
+    private ArrayList<String> mqttMessageList = new ArrayList<>();
     FirebaseAuth auth;
-    Button button,setting_btn;
+    Button button,setting_btn,noti_btn;
     //    TextView textView;
     FirebaseUser user;
 
@@ -48,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
         progTemp = findViewById(R.id.progressBarTemp);
         progHumi = findViewById(R.id.progressBarHumi);
         setting_btn = findViewById(R.id.btn_settings);
+        noti_btn = findViewById(R.id.notification);
 
         // Firebase Authentication
         auth = FirebaseAuth.getInstance();
@@ -71,6 +79,31 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(),Setting.class);
                 startActivity(intent);
+            }
+        });
+
+
+        // for notification button
+        noti_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Xây dựng dialog
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                builder.setTitle("Notification Messages");
+
+                // Hiển thị danh sách thông điệp trong dialog
+                StringBuilder notificationMessage = new StringBuilder();
+                for (String message : mqttMessageList) {
+                    notificationMessage.append(message).append("\n");
+                }
+                builder.setMessage(notificationMessage.toString());
+
+                // Thêm nút đóng vào dialog
+                builder.setPositiveButton("Close", null);
+
+                // Tạo và hiển thị dialog
+                AlertDialog dialogs = builder.create();
+               dialogs.show();
             }
         });
 
@@ -180,6 +213,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void messageArrived(String topic, MqttMessage message) throws Exception {
                 Log.d("TEST", topic +"***"+message.toString());
+                String changeMsg = new String(message.toString());
+//                showSnackbar("Adafruit Feed Update" + "Data on topic: " + topic + " has been updated to" + changeMsg);
+                mqttMessageList.add("- Data on topic: " + topic.substring(21) + " has been updated to " + changeMsg);
+                showNotification("Adafruit Feed Update", "Data on topic " + topic + " has been updated!");
+                // Display notification
                 if(topic.contains("humi"))
                 {
                     txtHumi.setText(message.toString()+ "%");
@@ -246,4 +284,24 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+    private void showNotification(String title, String message) {
+        Intent intent = new Intent(this, MainActivity.class);
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        Notification notification = new Notification.Builder(this)
+                .setContentTitle(title)
+                .setContentText(message)
+                .setSmallIcon(R.mipmap.ic_launcher)
+                .setContentIntent(pendingIntent)
+                .setAutoCancel(true)
+                .build();
+
+        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        notificationManager.notify(0, notification);
+    }
+
+//    private void showSnackbar(String message) {
+//        Snackbar.make(findViewById(android.R.id.content), message, Snackbar.LENGTH_SHORT).show();
+//    }
+
 }

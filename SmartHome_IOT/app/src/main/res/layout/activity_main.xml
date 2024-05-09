@@ -16,13 +16,13 @@
 
         <!--        # Notification-->
         <Button
+            android:id="@+id/notification"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@android:color/transparent"
             android:drawableRight="@drawable/noti"
             android:layout_marginRight="5dp"
             android:paddingTop="10dp" />
-
     </LinearLayout>
 
     <!--    Welcome-->
