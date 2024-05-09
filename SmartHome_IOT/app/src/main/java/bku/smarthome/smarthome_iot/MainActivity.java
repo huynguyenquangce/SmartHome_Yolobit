@@ -26,8 +26,8 @@ import java.nio.charset.Charset;
 public class MainActivity extends AppCompatActivity {
 
     FirebaseAuth auth;
-    Button button;
-//    TextView textView;
+    Button button,setting_btn;
+    //    TextView textView;
     FirebaseUser user;
 
     MQTTHelper mqttHelper;
@@ -47,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
         pump_btn = findViewById(R.id.btn_pump);
         progTemp = findViewById(R.id.progressBarTemp);
         progHumi = findViewById(R.id.progressBarHumi);
+        setting_btn = findViewById(R.id.btn_settings);
 
         // Firebase Authentication
         auth = FirebaseAuth.getInstance();
@@ -64,7 +65,14 @@ public class MainActivity extends AppCompatActivity {
 //            textView.setText(user.getEmail());
 //        }
 
-        // For progress bar
+        // For settings
+        setting_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(),Setting.class);
+                startActivity(intent);
+            }
+        });
 
 
         button.setOnClickListener(new View.OnClickListener() {

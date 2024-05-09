@@ -5,9 +5,9 @@ import random
 from uart import *
 from simple_ai import *
 
-AIO_FEED_ID = ["temp", "humi", "light_level", "security", "led_button", "door_button", "fan", "ai_detect","pump"]
+AIO_FEED_ID = ["temp", "humi", "light_level", "security", "led_button", "door_button", "fan", "ai_detect","pump","set_humi", "set_temp"]
 AIO_USERNAME = "huynguyenk21ce"
-AIO_KEY = "aio_DrJE19Nsj9HlySKvNtxv6AW9IIOT"
+AIO_KEY = "aio_pVvK99EhIU00FiHdPjbMWD0Ze1lh"
 AIO_KEY = AIO_KEY.replace(AIO_KEY[:3], "aio")
 
 def connected(client):
@@ -48,6 +48,8 @@ def message(client , feed_id , payload):
             writeData("9")
         else:
             writeData("10")
+    if feed_id == "set_temp":
+            writeData(payload)
 
 
 client = MQTTClient(AIO_USERNAME , AIO_KEY)
@@ -72,8 +74,8 @@ while True:
         counter_ai -=1
         if counter_ai <=0:
             counter_ai = 10
-            ai_result = image_detector()
-            client.publish("ai_detect",ai_result)
+            # ai_result = image_detector()
+            # client.publish("ai_detect",ai_result)
         readSerial(client)
     time.sleep(1)
     pass

@@ -34,8 +34,12 @@
         <activity
             android:name=".MainActivity"
             android:exported="true">
-
         </activity>
+        <activity
+            android:name=".Setting"
+            android:exported="true">
+        </activity>
+
 
         <service android:name="org.eclipse.paho.android.service.MqttService" />
     </application>

@@ -21,7 +21,7 @@
             android:background="@android:color/transparent"
             android:drawableRight="@drawable/noti"
             android:layout_marginRight="5dp"
-            android:paddingTop="15dp" />
+            android:paddingTop="10dp" />
 
     </LinearLayout>
 
@@ -30,20 +30,21 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="12">
+
         <TextView
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="Welcome\nHome"
-            android:textStyle="bold"
-            android:textSize="55dp"
-            android:textColor="#FFFFFF"
-            android:gravity="left"
             android:layout_marginLeft="40dp"
+            android:layout_weight="1"
+            android:gravity="left"
             android:shadowColor="#000000"
             android:shadowDx="2"
             android:shadowDy="2"
-            android:shadowRadius="3"></TextView>
+            android:shadowRadius="3"
+            android:text="Welcome\nHome"
+            android:textColor="#FFFFFF"
+            android:textSize="40dp"
+            android:textStyle="bold"></TextView>
     </LinearLayout>
 
     <!--Temperature & Humidity-->
@@ -62,7 +63,7 @@
             android:layout_marginLeft="10dp"
             android:layout_marginRight="15dp"
             android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
+            android:layout_marginBottom="5dp"
             android:background="@drawable/rounded"
             android:orientation="vertical"
             android:layout_weight="1">
@@ -94,10 +95,11 @@
                 style="?android:attr/progressBarStyleHorizontal"
                 android:layout_width="match_parent"
                 android:layout_height="4dp"
-                android:progress="50"
-                android:progressDrawable="@drawable/custom_progress_bar"
                 android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"/>
+                android:layout_marginRight="5dp"
+                android:progress="50"
+                android:progressDrawable="@drawable/custom_progress_bar" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
@@ -120,7 +122,7 @@
             android:layout_marginLeft="15dp"
             android:layout_marginRight="10dp"
             android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
+            android:layout_marginBottom="5dp"
             android:background="@drawable/rounded"
             android:orientation="vertical"
             android:layout_weight="1">
@@ -490,6 +492,7 @@
                 android:layout_weight="1"
                 android:gravity="center">
                 <Button
+                    android:id="@+id/btn_settings"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@android:color/transparent"
