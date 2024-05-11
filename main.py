@@ -34,21 +34,23 @@ def message(client , feed_id , payload):
             writeData("3")
         else:
             writeData("4")
-    if feed_id == "security":
-        if payload == "1":
-            writeData("5")
-        else:
-            writeData("6")
     if feed_id == "fan":
         if payload == "1":
-            writeData("7")
+            writeData("5")
         elif payload == "2":
-            writeData("8")
+            writeData("6")
         elif payload == "3":
+            writeData("7")
+        else:
+            writeData("8")
+    if feed_id == "pump":
+        if payload == "1":
             writeData("9")
         else:
             writeData("10")
     if feed_id == "set_temp":
+            writeData(payload)
+    if feed_id == "set_humi":
             writeData(payload)
 
 
