@@ -1,7 +1,9 @@
 ## Description
-- ![alt text]()
-- ![alt text]()
-- ![alt text]()
+- ![alt text](https://github.com/huynguyenquangce/SmartHome_Yolobit/blob/main/public/image1.png)
+- ![alt text](https://github.com/huynguyenquangce/SmartHome_Yolobit/blob/main/public/image2.png)
+- ![alt text](https://github.com/huynguyenquangce/SmartHome_Yolobit/blob/main/public/image3.png)
+- ![alt text](https://github.com/huynguyenquangce/SmartHome_Yolobit/blob/main/public/image4.png)
+- ![alt text](https://github.com/huynguyenquangce/SmartHome_Yolobit/blob/main/public/image5.png)
 ## Techstack
 - **[Ohstem App]** - Ohstem App is a tool designed for easy management and control of Internet of Things (IoT) devices. It offers a simple and user-friendly interface for users to interact with smart devices conveniently.
 - **[Android Studio]** -  Android Studio is an integrated development environment (IDE) used to develop mobile applications for the Android platform. In this case, it's utilized for building apps to control and manage devices within the SmartHome IoT network.
