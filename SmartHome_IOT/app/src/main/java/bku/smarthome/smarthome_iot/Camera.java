@@ -8,53 +8,30 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Button;
 import android.widget.TextView;
-import com.google.android.material.textfield.TextInputLayout;
+
 import java.nio.charset.Charset;
-import com.github.angads25.toggle.interfaces.OnToggledListener;
-import com.github.angads25.toggle.model.ToggleableView;
-import com.github.angads25.toggle.widget.LabeledSwitch;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
 import org.eclipse.paho.client.mqttv3.MqttCallbackExtended;
 import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
 
-public class Setting extends AppCompatActivity{
-    Button save_btn, back_main;
-//    TextInputLayout tempSet, humiSet;
-    EditText temperatureEditText, humidityEditText;
+public class Camera extends AppCompatActivity{
+    Button  back_main;
+//    EditText cameraTxt;
+    TextView cameraTxt;
     MQTTHelper mqttHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.settings);
-        save_btn = findViewById(R.id.save_btn);
-//        tempSet = findViewById(R.id.tempSet);
-//        humiSet = findViewById(R.id.humiSet);
-        back_main = findViewById(R.id.mainNow);
-        temperatureEditText = findViewById(R.id.temperatureEditText);
-        humidityEditText = findViewById(R.id.humidityEditText);
-
+        setContentView(R.layout.camera);
+        back_main = findViewById(R.id.mainNows);
+        cameraTxt = findViewById(R.id.cameraTxt);
         //    For back main button
         back_main.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(),MainActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        // For Save Button push data to feed set_temp and set_humi
-        save_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String temperatures = temperatureEditText.getText().toString();
-                String humiditys = humidityEditText.getText().toString();
-                sendDataMQTT("huynguyenk21ce/feeds/set-t",temperatures);
-                sendDataMQTT("huynguyenk21ce/feeds/set-h",humiditys);
                 Intent intent = new Intent(getApplicationContext(),MainActivity.class);
                 startActivity(intent);
             }
@@ -96,6 +73,10 @@ public class Setting extends AppCompatActivity{
             @Override
             public void messageArrived(String topic, MqttMessage message) throws Exception {
                 Log.d("TEST", topic +"***"+message.toString());
+                if(topic.contains("ai-detect"))
+                {
+                    cameraTxt.setText(message.toString());
+                }
             }
 
             @Override

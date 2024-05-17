@@ -500,12 +500,13 @@
                     android:layout_marginLeft="20dp"
                     android:contentDescription="Button setting"/>
             </LinearLayout>
-            <!--            Button Voice-->
+            <!--            Button Camera-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1">
                 <Button
+                    android:id="@+id/btn_camera"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@android:color/transparent"

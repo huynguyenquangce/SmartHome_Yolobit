@@ -5,9 +5,10 @@ import random
 from uart import *
 from simple_ai import *
 
-AIO_FEED_ID = ["temp", "humi", "light_level", "security", "led_button", "door_button", "fan", "ai_detect","pump","set_humi", "set_temp"]
+timer = time.time()
+AIO_FEED_ID = ["temp", "humi", "light_level", "led_button", "door_button", "fan", "ai_detect","pump","set-h", "set-t"]
 AIO_USERNAME = "huynguyenk21ce"
-AIO_KEY = "aio_pVvK99EhIU00FiHdPjbMWD0Ze1lh"
+AIO_KEY = "aio_YRDR146RLs0RXh7lrbcQquZUMcQb"
 AIO_KEY = AIO_KEY.replace(AIO_KEY[:3], "aio")
 
 def connected(client):
@@ -24,6 +25,9 @@ def disconnected(client):
 
 def message(client , feed_id , payload):
     print("Nhan du lieu: " + payload + " , feed id:", feed_id)
+    global timer
+    if time.time() - timer < 0.2:
+        time.sleep(0.3 - (time.time() - timer))
     if feed_id == "door_button":
         if payload == "1":
             writeData("1")
@@ -48,10 +52,11 @@ def message(client , feed_id , payload):
             writeData("9")
         else:
             writeData("10")
-    if feed_id == "set_temp":
-            writeData(payload)
-    if feed_id == "set_humi":
-            writeData(payload)
+    if feed_id == "set-t":
+            writeData("00000"+payload)
+    if feed_id == "set-h":
+            writeData("0000000"+payload)
+    timer = time.time()
 
 
 client = MQTTClient(AIO_USERNAME , AIO_KEY)
@@ -66,7 +71,7 @@ client.loop_background()
 counter_updateValue = 1
 counter_readSever = 1
 
-counter_ai = 10
+counter_ai = 20
 readSerial(client)
 while True:
     counter_updateValue = counter_updateValue - 1

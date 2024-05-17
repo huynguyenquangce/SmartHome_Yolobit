@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
 
     private ArrayList<String> mqttMessageList = new ArrayList<>();
     FirebaseAuth auth;
-    Button button,setting_btn,noti_btn;
+    Button button,setting_btn,noti_btn,camera_btn;
     //    TextView textView;
     FirebaseUser user;
 
@@ -56,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
         progHumi = findViewById(R.id.progressBarHumi);
         setting_btn = findViewById(R.id.btn_settings);
         noti_btn = findViewById(R.id.notification);
+        camera_btn = findViewById(R.id.btn_camera);
 
         // Firebase Authentication
         auth = FirebaseAuth.getInstance();
@@ -78,6 +79,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(),Setting.class);
+                startActivity(intent);
+            }
+        });
+
+        // For camera
+        camera_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(),Camera.class);
                 startActivity(intent);
             }
         });
