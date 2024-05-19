@@ -13,7 +13,7 @@
 ## Installation
 To install and run the project, follow these steps:
 - Clone the repository to your local PC
-- Use Android Studio Editor to run this app, use can use **[Genymotion]** to run this app in virual phone.
+- Use Android Studio Editor to run this app, use can use **[Genymotion]** to run this app in virtual phone.
 - In file, MQTTHelper.java, changing username and password of your Adafruit Server, and also array of Topics.
 - If you want to use the IOT Gateway, go to file main.py and changing username and password of your Adafruit Server, and also array of Topics.
 
